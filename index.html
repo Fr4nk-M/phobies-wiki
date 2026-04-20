@@ -55,6 +55,9 @@
     <script type="text/babel">
         const { useState, useMemo, useEffect } = React;
 
+        const BASE_IMG_URL = "./images/";
+        const BASE_ICON_URL = "./images/icons/";
+
         const FormattedStat = ({ type, value }) => {
             useEffect(() => {
                 if (window.lucide) {
@@ -65,7 +68,7 @@
             if (!value || value === '-') return <span>{value}</span>;
 
             if (type === 'health') {
-                let content = value.toString() + '&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/3/37/Icon_health.png/revision/latest/scale-to-width-down/40?cb=20220310212509" alt="HP" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />';
+                let content = value.toString() + '&nbsp;<img src="' + BASE_ICON_URL + 'Icon_health.png" alt="HP" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />';
                 return <span dangerouslySetInnerHTML={{ __html: content }} />;
             }
 
@@ -76,22 +79,22 @@
                         {parts.map((part, idx) => {
                             let content = part;
                             
-                            content = content.replace('Self-Initiated Area of Effect', 'Self-Initiated Area of Effect&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/e/eb/Icon_self_aoe.png/revision/latest?cb=20220425084308" alt="SAoE" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
-                            content = content.replace('Targeted Area of Effect', 'Targeted Area of Effect&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/4/4b/Icon_aoe_targeted.png/revision/latest?cb=20220707051859" alt="TAoE" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
+                            content = content.replace('Self-Initiated Area of Effect', 'Self-Initiated Area of Effect&nbsp;<img src="' + BASE_ICON_URL + 'Icon_self_aoe.png" alt="SAoE" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
+                            content = content.replace('Targeted Area of Effect', 'Targeted Area of Effect&nbsp;<img src="' + BASE_ICON_URL + 'Icon_aoe_targeted.png" alt="TAoE" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
                             
-                            content = content.replace('Poison Damage', 'Poison Damage&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/5/52/Icon_poison.png/revision/latest/scale-to-width-down/40?cb=20220311190313" alt="PD" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />');
-                            content = content.replace('Electric Damage', 'Electric Damage&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/4/47/Icon_electrical.png/revision/latest/scale-to-width-down/40?cb=20220310212205" alt="ED" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />');
-                            content = content.replace('Disease Damage', 'Disease Damage&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/a/a5/Icon_disease.png/revision/latest/scale-to-width-down/40?cb=20220310212847" alt="DD" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />');
-                            content = content.replace('Fire Damage', 'Fire Damage&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/2/2c/Icon_fire.png/revision/latest/scale-to-width-down/40?cb=20220310212246" alt="FD" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />');
-                            content = content.replace('Leech', 'Lifesteal&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/9/90/Icon_leech.png/revision/latest?cb=20240214152011" alt="Lifesteal" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />');
-                            content = content.replace('Heal', 'Heal&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/7/7d/Icon_heartheal.png/revision/latest?cb=20240214152011" alt="Heal" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />');
+                            content = content.replace('Poison Damage', 'Poison Damage&nbsp;<img src="' + BASE_ICON_URL + 'Icon_poison.png" alt="PD" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />');
+                            content = content.replace('Electric Damage', 'Electric Damage&nbsp;<img src="' + BASE_ICON_URL + 'Icon_electrical.png" alt="ED" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />');
+                            content = content.replace('Disease Damage', 'Disease Damage&nbsp;<img src="' + BASE_ICON_URL + 'Icon_disease.png" alt="DD" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />');
+                            content = content.replace('Fire Damage', 'Fire Damage&nbsp;<img src="' + BASE_ICON_URL + 'Icon_fire.png" alt="FD" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />');
+                            content = content.replace('Leech', 'Lifesteal&nbsp;<img src="' + BASE_ICON_URL + 'Icon_leech.png" alt="Lifesteal" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />');
+                            content = content.replace('Heal', 'Heal&nbsp;<img src="' + BASE_ICON_URL + 'Icon_heartheal.png" alt="Heal" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />');
                             
                             content = content.replace(/\*\s*(\d+|∞)/g, '<span class="inline-flex items-center text-[8px] text-amber-300 ml-1.5 bg-amber-950/60 px-1.5 py-0.5 rounded-md border border-amber-500/40 tracking-wider align-middle whitespace-nowrap shadow-[0_0_8px_rgba(245,158,11,0.2)]" title="Attacks $1x consecutively on each subsequent turn"><i data-lucide="hourglass" class="w-2.5 h-2.5 mr-1"></i> $1</span>');
                             
                             content = content.replace(/1 50%/g, '<span class="inline-flex items-center text-[8px] text-rose-300 ml-1.5 bg-rose-950/60 px-1.5 py-0.5 rounded-md border border-rose-500/40 tracking-wider align-middle whitespace-nowrap shadow-[0_0_8px_rgba(244,63,94,0.2)]" title="1 tile radius with 50% damage reduction at the edges"><i data-lucide="radar" class="w-2.5 h-2.5 mr-1"></i> 1 (-50%)</span>');
                             
                             if (idx === 0) {
-                                content = content.trim() + '&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/7/73/Icon_damage.png/revision/latest/scale-to-width-down/40?cb=20220310212127" alt="DMG" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />';
+                                content = content.trim() + '&nbsp;<img src="' + BASE_ICON_URL + 'Icon_damage.png" alt="DMG" class="inline w-3.5 h-3.5 object-contain align-text-bottom drop-shadow-md" />';
                             }
 
                             return (
@@ -105,21 +108,19 @@
             let content = value.toString();
 
             if (type === 'movement') {
-                content = content.replace('Walking', 'Walking&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/7/74/Icon_movement_walk.png/revision/latest?cb=20220310212216" alt="Walk" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
-                content = content.replace('Flying', 'Flying&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/d/d8/Icon_movement_fly.png/revision/latest?cb=20220310212306" alt="Fly" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
-                content = content.replace('Bypassing', 'Bypassing&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/0/0a/Bypass.png/revision/latest?cb=20220311154855" alt="Bypass" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
+                content = content.replace('Walking', 'Walking&nbsp;<img src="' + BASE_ICON_URL + 'Icon_movement_walk.png" alt="Walk" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
+                content = content.replace('Flying', 'Flying&nbsp;<img src="' + BASE_ICON_URL + 'Icon_movement_fly.png" alt="Fly" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
+                content = content.replace('Bypassing', 'Bypassing&nbsp;<img src="' + BASE_ICON_URL + 'Bypass.png" alt="Bypass" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
             } else if (type === 'range') {
-                content = content.replace('Line of Sight', 'Line of Sight&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/f/f7/Icon_range_line_of_sight.png/revision/latest?cb=20220310212223" alt="LoS" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
-                content = content.replace('Lob', 'Lob&nbsp;<img src="https://static.wikia.nocookie.net/phobies/images/9/91/Icon_range_lob.png/revision/latest?cb=20220425080227" alt="Lob" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
+                content = content.replace('Line of Sight', 'Line of Sight&nbsp;<img src="' + BASE_ICON_URL + 'Icon_range_line_of_sight.png" alt="LoS" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
+                content = content.replace('Lob', 'Lob&nbsp;<img src="' + BASE_ICON_URL + 'Icon_range_lob.png" alt="Lob" class="inline w-4 h-4 object-contain align-text-bottom drop-shadow-md" />');
             }
 
             return <span dangerouslySetInnerHTML={{ __html: content }} />;
         };
 
-        const BASE_IMG_URL = "./images/";
-
         const PHOBIES_DATA = [
-          { name: "Razor Mouth", race: "Monster", key: 1, rarity: "Common", health: 600, movement: "2 Walking", range: "1 Line of Sight", damage: "300 Single Target Attack", passive: "-", active: "-", image: BASE_IMG_URL + "razormouth.png" },
+          { name: "Razor Mouth", race: "Monster", key: 1, rarity: "Common", health: 600, movement: "2 Walking", range: "1 Line of Sight", damage: "300 Single Target Attack", passive: "-", active: "-", image: BASE_IMG_URL + "razormouth.png", stressLevel: 1 },
           { name: "AWOL", race: "Monster", key: 1, rarity: "Common", health: 350, movement: "2 Walking", range: "1 Line of Sight", damage: "475 Single Target Attack", passive: "-", active: "-", image: BASE_IMG_URL + "awol.png" },
           { name: "Electricat", race: "Monster", key: 1, rarity: "Uncommon", health: 620, movement: "2 Walking", range: "1 Line of Sight", damage: "200 Single Target Attack, 220 Electric Damage", passive: "-", active: "-", image: BASE_IMG_URL + "electricat.png" },
           { name: "Muffintop", race: "Monster", key: 1, rarity: "Uncommon", health: 550, movement: "2 Walking", range: "-", damage: "-", passive: "-", active: "Goodness Me!", image: BASE_IMG_URL + "muffintop.png" },
@@ -169,7 +170,7 @@
           { name: "Tick", race: "Monster", key: 3, rarity: "Ultra Rare", health: 1300, movement: "2 Walking", range: "1 Line of Sight", damage: "400 Single Target Attack", passive: "-", active: "In The Lymelight", image: BASE_IMG_URL + "tick.png" },
           { name: "BoMangles", race: "Mechanical", key: 3, rarity: "Common", health: 1550, movement: "1 Walking", range: "2 Line of Sight", damage: "420 Single Target Attack", passive: "-", active: "-", image: BASE_IMG_URL + "bomangles.png" },
           { name: "Misanthrope", race: "Mechanical", key: 3, rarity: "Common", health: 1700, movement: "2 Walking", range: "1 Line of Sight", damage: "350 Single Target Attack", passive: "-", active: "-", image: BASE_IMG_URL + "misanthrope.png" },
-          { name: "Clinico", race: "Mechanical", key: 3, rarity: "Uncommon", health: 750, movement: "2 Walking", range: "1 Line of Sight", damage: "210 Single Target Attack", passive: "-", active: "Oops-Away", image: BASE_IMG_URL + "clinico.png" },
+          { name: "Clinico", race: "Mechanical", key: 3, rarity: "Uncommon", health: 750, movement: "2 Walking", range: "1 Line of Sight", damage: "210 Single Target Attack", passive: "-", active: "Oops-Away", image: BASE_IMG_URL + "clinico.png", stressLevel: 20 },
           { name: "Dial", race: "Mechanical", key: 3, rarity: "Rare", health: 950, movement: "2 Walking", range: "1 Line of Sight", damage: "260 Single Target Attack", passive: "-", active: "Stay Tuned", image: BASE_IMG_URL + "dial.png" },
           { name: "Sulky", race: "Mechanical", key: 3, rarity: "Rare", health: 1500, movement: "2 Walking", range: "1 Line of Sight", damage: "300 Single Target Attack", passive: "Killing Machine", active: "-", image: BASE_IMG_URL + "sulky.png" },
           { name: "Jar Cannon", race: "Mechanical", key: 3, rarity: "Ultra Rare", health: 420, movement: "2 Walking", range: "3 Lob", damage: "220 Single Target Attack", passive: "-", active: "-", image: BASE_IMG_URL + "jarcannon.png" },
@@ -186,13 +187,13 @@
           { name: "Thunder Rocks", race: "Dimensional", key: 3, rarity: "Common", health: 1500, movement: "2 Walking", range: "1 Line of Sight", damage: "250 Single Target Attack, 500 Electric Damage", passive: "-", active: "-", image: BASE_IMG_URL + "thunderrocks.png" },
           { name: "Flail", race: "Dimensional", key: 3, rarity: "Common", health: 900, movement: "2 Walking", range: "1 Line of Sight", damage: "600 Self-Initiated Area of Effect", passive: "-", active: "-", image: BASE_IMG_URL + "flail.png" },
           { name: "Tooth Fairy", race: "Dimensional", key: 3, rarity: "Uncommon", health: 800, movement: "2 Flying", range: "2 Line of Sight", damage: "350 Single Target Attack", passive: "-", active: "-", image: BASE_IMG_URL + "toothfairy.png" },
-          { name: "Snowball", race: "Dimensional", key: 3, rarity: "Rare", health: 700, movement: "3 Walking", range: "1 Line of Sight", damage: "220 Single Target Attack", passive: "-", active: "Shishkabab", image: BASE_IMG_URL + "snowball.png" },
+          { name: "Snowball", race: "Dimensional", key: 3, rarity: "Rare", health: 700, movement: "3 Walking", range: "1 Line of Sight", damage: "220 Single Target Attack", passive: "-", active: "Shishkabab", image: BASE_IMG_URL + "snowball.png", stressLevel: 40 },
           { name: "Pan", race: "Dimensional", key: 3, rarity: "Rare", health: 900, movement: "2 Walking", range: "1 Line of Sight", damage: "350 Single Target Attack", passive: "-", active: "Focus Pokus", image: BASE_IMG_URL + "pan.png" },
-          { name: "Jammy Fish", race: "Dimensional", key: 3, rarity: "Ultra Rare", health: 650, movement: "2 Flying", range: "2 Line of Sight", damage: "300 Single Target Attack", passive: "-", active: "Key Master", image: BASE_IMG_URL + "jammyfish.png" },
+          { name: "Jammy Fish", race: "Dimensional", key: 3, rarity: "Ultra Rare", health: 650, movement: "2 Flying", range: "2 Line of Sight", damage: "300 Single Target Attack", passive: "-", active: "Key Master", image: BASE_IMG_URL + "jammyfish.png", stressLevel: 110 },
           { name: "Slammer Head", race: "Monster", key: 4, rarity: "Common", health: 1800, movement: "2 Walking", range: "1 Line of Sight", damage: "350 Single Target Attack", passive: "-", active: "Play Smashface", image: BASE_IMG_URL + "slammerhead.png" },
           { name: "Moley Bully", race: "Monster", key: 4, rarity: "Common", health: 1600, movement: "2 Bypassing", range: "1 Line of Sight", damage: "550 Single Target Attack", passive: "-", active: "-", image: BASE_IMG_URL + "moleybully.png" },
           { name: "Temptresss", race: "Monster", key: 4, rarity: "Uncommon", health: 1200, movement: "2 Walking", range: "2 Line of Sight", damage: "300 Single Target Attack, 250 Electric Damage", passive: "-", active: "Electisssity", image: BASE_IMG_URL + "temptresss.png" },
-          { name: "Ginsting", race: "Monster", key: 4, rarity: "Uncommon", health: 1300, movement: "2 Walking", range: "2 Line of Sight", damage: "350 Single Target Attack", passive: "-", active: "Beeeeesssssss!!!", image: BASE_IMG_URL + "ginsting.png" },
+          { name: "Ginsting", race: "Monster", key: 4, rarity: "Uncommon", health: 1300, movement: "2 Walking", range: "2 Line of Sight", damage: "350 Single Target Attack", passive: "-", active: "Beeeeesssssss!!!", image: BASE_IMG_URL + "ginsting.png", stressLevel: 10 },
           { name: "Sheeping Gas", race: "Monster", key: 4, rarity: "Uncommon", health: 1400, movement: "2 Walking", range: "1 Line of Sight", damage: "475 Single Target Attack, 100 Poison Damage *10", passive: "-", active: "Phew!", image: BASE_IMG_URL + "sheepinggas.png" },
           { name: "Honey Bear", race: "Monster", key: 4, rarity: "Uncommon", health: 2000, movement: "1 Walking", range: "2 Line of Sight", damage: "300 Single Target Attack", passive: "-", active: "It’s Over Honey!", image: BASE_IMG_URL + "honeybear.png" },
           { name: "Clobster", race: "Monster", key: 4, rarity: "Rare", health: 1700, movement: "2 Walking", range: "1 Line of Sight", damage: "380 Single Target Attack", passive: "-", active: "Burrow", image: BASE_IMG_URL + "clobster.png" },
@@ -220,7 +221,7 @@
           { name: "Furkin Leepricarn", race: "Dimensional", key: 4, rarity: "Rare", health: 1300, movement: "1 Walking", range: "2 Lob", damage: "375 Single Target Attack", passive: "-", active: "Unlucky Charm", image: BASE_IMG_URL + "furkinleepricarn.png" },
           { name: "Sssizzzle", race: "Dimensional", key: 4, rarity: "Rare", health: 1500, movement: "2 Walking", range: "1 Line of Sight", damage: "550 Single Target Attack, 100 Fire Damage *1", passive: "-", active: "-", image: BASE_IMG_URL + "sssizzzle.png" },
           { name: "Grimes", race: "Dimensional", key: 4, rarity: "Ultra Rare", health: 1600, movement: "2 Bypassing", range: "1 Line of Sight", damage: "400 Single Target Attack", passive: "Body Count", active: "-", image: BASE_IMG_URL + "grimes.png" },
-          { name: "The Glob", race: "Dimensional", key: 4, rarity: "Ultra Rare", health: 2500, movement: "1 Walking", range: "-", damage: "-", passive: "Digest", active: "-", image: BASE_IMG_URL + "theglob.png" },
+          { name: "The Glob", race: "Dimensional", key: 4, rarity: "Ultra Rare", health: 2500, movement: "1 Walking", range: "-", damage: "-", passive: "Digest", active: "-", image: BASE_IMG_URL + "theglob.png", stressLevel: 80 },
           { name: "Prometheus", race: "Dimensional", key: 4, rarity: "Ultra Rare", health: 1800, movement: "2 Walking", range: "1 Line of Sight", damage: "400 Single Target Attack", passive: "Fire Immune", active: "Fearvidus", image: BASE_IMG_URL + "prometheus.png" },
           { name: "Gloomstare", race: "Dimensional", key: 4, rarity: "Ultra Rare", health: 1100, movement: "2 Walking", range: "2 Line of Sight", damage: "325 Single Target Attack", passive: "-", active: "Kiss Cam", image: BASE_IMG_URL + "gloomstare.png" },
           { name: "Staremaster", race: "Monster", key: 5, rarity: "Common", health: 1200, movement: "2 Walking", range: "2 Line of Sight", damage: "500 Single Target Attack", passive: "-", active: "-", image: BASE_IMG_URL + "staremaster.png" },
@@ -228,9 +229,9 @@
           { name: "Ray Chargels", race: "Monster", key: 5, rarity: "Common", health: 1200, movement: "2 Flying", range: "2 Line of Sight", damage: "375 Single Target Attack, 375 Electric Damage", passive: "-", active: "-", image: BASE_IMG_URL + "raychargels.png" },
           { name: "Woolly Bully", race: "Monster", key: 5, rarity: "Uncommon", health: 1800, movement: "2 Walking", range: "1 Line of Sight", damage: "390 Single Target Attack", passive: "-", active: "Peek-a-booOO!", image: BASE_IMG_URL + "woollybully.png" },
           { name: "Perma", race: "Monster", key: 5, rarity: "Uncommon", health: 1200, movement: "2 Walking", range: "2 Line of Sight", damage: "400 Single Target Attack", passive: "-", active: "Snow Blind", image: BASE_IMG_URL + "perma.png" },
-          { name: "Miss Moffat", race: "Monster", key: 5, rarity: "Rare", health: 1300, movement: "2 Walking", range: "1 Line of Sight", damage: "250 Single Target Attack, 400 Poison Damage *3", passive: "-", active: "Come Closer", image: BASE_IMG_URL + "missmoffat.png" },
+          { name: "Miss Moffat", race: "Monster", key: 5, rarity: "Rare", health: 1300, movement: "2 Walking", range: "1 Line of Sight", damage: "250 Single Target Attack, 400 Poison Damage *3", passive: "-", active: "Come Closer", image: BASE_IMG_URL + "missmoffat.png", stressLevel: 30 },
           { name: "Noxious", race: "Monster", key: 5, rarity: "Rare", health: 1500, movement: "2 Flying", range: "1 Line of Sight", damage: "400 Single Target Attack", passive: "-", active: "Toxic Spittle", image: BASE_IMG_URL + "noxious.png" },
-          { name: "Sasquatch", race: "Monster", key: 5, rarity: "Ultra Rare", health: 1000, movement: "2 Walking", range: "1 Line of Sight", damage: "600 Single Target Attack", passive: "-", active: "Now you see me…", image: BASE_IMG_URL + "sasquatch.png" },
+          { name: "Sasquatch", race: "Monster", key: 5, rarity: "Ultra Rare", health: 1000, movement: "2 Walking", range: "1 Line of Sight", damage: "600 Single Target Attack", passive: "-", active: "Now you see me…", image: BASE_IMG_URL + "sasquatch.png", stressLevel: 120 },
           { name: "Hazmat", race: "Monster", key: 5, rarity: "Ultra Rare", health: 2200, movement: "1 Walking", range: "2 Line of Sight", damage: "450 Single Target Attack", passive: "Poison Immune", active: "Swabby", image: BASE_IMG_URL + "hazmat.png" },
           { name: "Wabbit", race: "Monster", key: 5, rarity: "Ultra Rare", health: 1100, movement: "2 Walking", range: "2 Line of Sight", damage: "350 Single Target Attack", passive: "-", active: "Egg Zackley", image: BASE_IMG_URL + "wabbit.png" },
           { name: "Heavo", race: "Mechanical", key: 5, rarity: "Common", health: 1900, movement: "2 Walking", range: "2 Lob", damage: "350 Single Target Attack", passive: "-", active: "-", image: BASE_IMG_URL + "heavo.png" },
@@ -251,7 +252,7 @@
           { name: "Baba Yaga", race: "Dimensional", key: 5, rarity: "Rare", health: 1400, movement: "2 Walking", range: "1 Line of Sight", damage: "475 Single Target Attack", passive: "-", active: "Baba Boom!", image: BASE_IMG_URL + "babayaga.png" },
           { name: "Doom Doom", race: "Dimensional", key: 5, rarity: "Rare", health: 1800, movement: "2 Walking", range: "2 Line of Sight", damage: "300 Single Target Attack", passive: "Eye Spy, Trap Absorber", active: "-", image: BASE_IMG_URL + "doomdoom.png" },
           { name: "Lila", race: "Dimensional", key: 5, rarity: "Rare", health: 1500, movement: "2 Walking", range: "1 Line of Sight", damage: "400 Single Target Attack", passive: "-", active: "Toxi Moxie", image: BASE_IMG_URL + "lila.png" },
-          { name: "Sir Probesalot", race: "Dimensional", key: 5, rarity: "Ultra Rare", health: 1100, movement: "2 Walking", range: "2 Line of Sight", damage: "425 Single Target Attack", passive: "-", active: "Force Field", image: BASE_IMG_URL + "sirprobesalot.png" },
+          { name: "Sir Probesalot", race: "Dimensional", key: 5, rarity: "Ultra Rare", health: 1100, movement: "2 Walking", range: "2 Line of Sight", damage: "425 Single Target Attack", passive: "-", active: "Force Field", image: BASE_IMG_URL + "sirprobesalot.png", stressLevel: 140 },
           { name: "Bluelien", race: "Dimensional", key: 5, rarity: "Ultra Rare", health: 1600, movement: "2 Bypassing", range: "1 Line of Sight", damage: "425 Single Target Attack", passive: "-", active: "Spa Treatment", image: BASE_IMG_URL + "blulien.png" },
           { name: "Mistle Toad", race: "Dimensional", key: 5, rarity: "Ultra Rare", health: 1300, movement: "2 Walking", range: "1 Line of Sight", damage: "350 Single Target Attack", passive: "-", active: "Toad-al Revenge", image: BASE_IMG_URL + "mistletoad.png" },
           { name: "Octo-Buddy", race: "Dimensional", key: 5, rarity: "Ultra Rare", health: 1400, movement: "2 Walking", range: "2 Line of Sight", damage: "420 Single Target Attack", passive: "-", active: "Universal Plug", image: BASE_IMG_URL + "octo-buddy.png" },
@@ -262,7 +263,7 @@
           { name: "Rambolina", race: "Monster", key: 6, rarity: "Rare", health: 1850, movement: "3 Walking", range: "1 Line of Sight", damage: "390 Single Target Attack", passive: "-", active: "Ramalam Ya!", image: BASE_IMG_URL + "rambolina.png" },
           { name: "Brutewurst", race: "Monster", key: 6, rarity: "Rare", health: 2800, movement: "1 Walking", range: "1 Line of Sight", damage: "500 Single Target Attack, 400 Disease Damage *∞", passive: "-", active: "Bovieitis", image: BASE_IMG_URL + "brutewurst.png" },
           { name: "Babadook", race: "Monster", key: 6, rarity: "Rare", health: 1700, movement: "2 Walking", range: "1 Los", damage: "600 Single Target Attack", passive: "-", active: "Debilitator", image: BASE_IMG_URL + "babadook.png" },
-          { name: "Puff", race: "Monster", key: 6, rarity: "Ultra Rare", health: 1600, movement: "2 Flying", range: "2 Line of Sight", damage: "300 Single Target Attack, 100 Fire Damage *1", passive: "-", active: "Inferninator", image: BASE_IMG_URL + "puff.png" },
+          { name: "Puff", race: "Monster", key: 6, rarity: "Ultra Rare", health: 1600, movement: "2 Flying", range: "2 Line of Sight", damage: "300 Single Target Attack, 100 Fire Damage *1", passive: "-", active: "Inferninator", image: BASE_IMG_URL + "puff.png", stressLevel: 100 },
           { name: "Baaaad Sheep", race: "Monster", key: 6, rarity: "Ultra Rare", health: 1800, movement: "2 Walking", range: "1 Line of Sight", damage: "500 Single Target Attack, 100 Poison Damage *10", passive: "-", active: "Colossal", image: BASE_IMG_URL + "baaaadsheep.png" },
           { name: "El Espinoso", race: "Monster", key: 6, rarity: "Ultra Rare", health: 1200, movement: "2 Walking", range: "2 Line of Sight", damage: "300 Single Target Attack, 100 Fire Damage *1", passive: "Fantasma", active: "-", image: BASE_IMG_URL + "elespinoso.png" },
           { name: "Chonkeys", race: "Monster", key: 6, rarity: "Ultra Rare", health: 2100, movement: "2 Walking", range: "1 Line of Sight", damage: "500 Single Target Attack", passive: "-", active: "Blizzard", image: BASE_IMG_URL + "chonkeys.png" },
@@ -301,13 +302,13 @@
           { name: "Skibidi", race: "Monster", key: 7, rarity: "Ultra Rare", health: 2100, movement: "2 Walking", range: "1 Line of Sight", damage: "550 Single Target Attack", passive: "-", active: "Plunger", image: BASE_IMG_URL + "skibidi.png" },
           { name: "Fishtank", race: "Mechanical", key: 7, rarity: "Common", health: 2500, movement: "2 Walking", range: "1 Line of Sight", damage: "750 Single Target Attack", passive: "-", active: "-", image: BASE_IMG_URL + "fishtank.png" },
           { name: "Motherload", race: "Mechanical", key: 7, rarity: "Rare", health: 2300, movement: "2 Walking", range: "2 Line of Sight", damage: "410 Single Target Attack", passive: "-", active: "Make it Rain!", image: BASE_IMG_URL + "motherload.png" },
-          { name: "Oopsy Baby", race: "Mechanical", key: 7, rarity: "Rare", health: 1400, movement: "1 Walking", range: "3 Line of Sight", damage: "400 Single Target Attack", passive: "-", active: "Cry Baby!", image: BASE_IMG_URL + "oopsybaby.png" },
+          { name: "Oopsy Baby", race: "Mechanical", key: 7, rarity: "Rare", health: 1400, movement: "1 Walking", range: "3 Line of Sight", damage: "400 Single Target Attack", passive: "-", active: "Cry Baby!", image: BASE_IMG_URL + "oopsybaby.png", stressLevel: 60 },
           { name: "Heavo 2.0", race: "Mechanical", key: 7, rarity: "Rare", health: 2000, movement: "2 Walking", range: "2 Lob", damage: "390 Single Target Attack", passive: "-", active: "Excessive Force!", image: BASE_IMG_URL + "heavo20.png" },
           { name: "Pearl", race: "Mechanical", key: 7, rarity: "Rare", health: 2200, movement: "2 Flying", range: "1 Line of Sight", damage: "450 Self-Initiated Area of Effect", passive: "-", active: "Rejection", image: BASE_IMG_URL + "pearl.png" },
           { name: "Blast-0 Matic", race: "Mechanical", key: 7, rarity: "Ultra Rare", health: 2900, movement: "1 Walking", range: "2 Line of Sight", damage: "400 Targeted Area of Effect 1 50%, 200 Electric Damage", passive: "-", active: "Friggin Lazer", image: BASE_IMG_URL + "blast-0matic.png" },
           { name: "Fleshcrawler", race: "Undead", key: 7, rarity: "Uncommon", health: 2300, movement: "2 Walking", range: "1 Line of Sight", damage: "500 Single Target Attack", passive: "-", active: "Raising Hell!", image: BASE_IMG_URL + "fleshcrawler.png" },
           { name: "Terrordactyl", race: "Undead", key: 7, rarity: "Uncommon", health: 1600, movement: "2 Flying", range: "2 Line of Sight", damage: "425 Single Target Attack", passive: "Resurrect", active: "-", image: BASE_IMG_URL + "terrordactyl.png" },
-          { name: "Fowl", race: "Undead", key: 7, rarity: "Rare", health: 1800, movement: "2 Walking", range: "1 Line of Sight", damage: "700 Single Target Attack", passive: "-", active: "Funky Chicken", image: BASE_IMG_URL + "fowl.png" },
+          { name: "Fowl", race: "Undead", key: 7, rarity: "Rare", health: 1800, movement: "2 Walking", range: "1 Line of Sight", damage: "700 Single Target Attack", passive: "-", active: "Funky Chicken", image: BASE_IMG_URL + "fowl.png", stressLevel: 50 },
           { name: "Buzzkill", race: "Undead", key: 7, rarity: "Rare", health: 1700, movement: "2 Walking", range: "2 Line of Sight", damage: "400 Single Target Attack", passive: "-", active: "Terrorform Saw", image: BASE_IMG_URL + "buzzkill.png" },
           { name: "Whuffalo Will", race: "Undead", key: 7, rarity: "Ultra Rare", health: 2200, movement: "1 Walking", range: "1 Line of Sight", damage: "450 Single Target Attack", passive: "-", active: "Whello New Friend", image: BASE_IMG_URL + "whuffalowill.png" },
           { name: "Greylien", race: "Dimensional", key: 7, rarity: "Rare", health: 1850, movement: "2 Bypassing", range: "1 Line of Sight", damage: "420 Single Target Attack", passive: "-", active: "Ole Switcher You!", image: BASE_IMG_URL + "greylien.png" },
@@ -319,10 +320,10 @@
           { name: "Coco", race: "Dimensional", key: 7, rarity: "Ultra Rare", health: 1800, movement: "2 Walking", range: "1 Line of Sight", damage: "550 Single Target Attack", passive: "-", active: "Snatch-a-roo", image: BASE_IMG_URL + "coco.png" },
           { name: "Firehorse", race: "Dimensional", key: 7, rarity: "Ultra Rare", health: 2100, movement: "3 Bypassing", range: "1 Line of Sight", damage: "400 Single Target Attack, 100 Fire Damage *1", passive: "Trail Blazing", active: "-", image: BASE_IMG_URL + "firehorse.png" },
           { name: "Barzilla", race: "Monster", key: 8, rarity: "Common", health: 2800, movement: "2 Walking", range: "2 Line of Sight", damage: "375 Single Target Attack, 100 Fire Damage *1", passive: "-", active: "-", image: BASE_IMG_URL + "barzilla.png" },
-          { name: "Yeti", race: "Monster", key: 8, rarity: "Ultra Rare", health: 1800, movement: "2 Walking", range: "2 Line of Sight", damage: "410 Single Target Attack", passive: "-", active: "Snowcone", image: BASE_IMG_URL + "yeti.png" },
+          { name: "Yeti", race: "Monster", key: 8, rarity: "Ultra Rare", health: 1800, movement: "2 Walking", range: "2 Line of Sight", damage: "410 Single Target Attack", passive: "-", active: "Snowcone", image: BASE_IMG_URL + "yeti.png", stressLevel: 70 },
           { name: "Doughzer", race: "Monster", key: 8, rarity: "Ultra Rare", health: 3000, movement: "1 Walking", range: "2 Line of Sight", damage: "575 Single Target Attack", passive: "-", active: "No Rush", image: BASE_IMG_URL + "doughzer.png" },
           { name: "Ace", race: "Mechanical", key: 8, rarity: "Uncommon", health: 2600, movement: "2 Walking", range: "1 Line of Sight", damage: "700 Single Target Attack, 700 Electric Damage", passive: "-", active: "-", image: BASE_IMG_URL + "ace.png" },
-          { name: "Subnoxious", race: "Mechanical", key: 8, rarity: "Ultra Rare", health: 1850, movement: "2 Bypassing", range: "2 Line of Sight", damage: "450 Single Target Attack", passive: "-", active: "Toxic Blast", image: BASE_IMG_URL + "subnoxious.png" },
+          { name: "Subnoxious", race: "Mechanical", key: 8, rarity: "Ultra Rare", health: 1850, movement: "2 Bypassing", range: "2 Line of Sight", damage: "450 Single Target Attack", passive: "-", active: "Toxic Blast", image: BASE_IMG_URL + "subnoxious.png", stressLevel: 130 },
           { name: "Butcher", race: "Mechanical", key: 8, rarity: "Ultra Rare", health: 1800, movement: "1 Walking", range: "3 Line of Sight", damage: "400 Single Target Attack", passive: "-", active: "Knife 2CU", image: BASE_IMG_URL + "butcher.png" },
           { name: "Hi-Five", race: "Undead", key: 8, rarity: "Uncommon", health: 2700, movement: "2 Walking", range: "1 Line of Sight", damage: "500 Self-Initiated Area of Effect", passive: "Heart Attack", active: "-", image: BASE_IMG_URL + "hifive.png" },
           { name: "Mildred", race: "Undead", key: 8, rarity: "Ultra Rare", health: 2000, movement: "1 Walking", range: "-", damage: "-", passive: "-", active: "Kitty Littering", image: BASE_IMG_URL + "mildred.png" },
@@ -338,7 +339,7 @@
           { name: "Frosty", race: "Mechanical", key: 9, rarity: "Ultra Rare", health: 1600, movement: "2 Flying", range: "2 Line of Sight", damage: "450 Single Target Attack, 450 Electric Damage", passive: "-", active: "Freeze Ray", image: BASE_IMG_URL + "frosty.png" },
           { name: "Heavo Plaid", race: "Mechanical", key: 9, rarity: "Ultra Rare", health: 1900, movement: "3 Walking", range: "2 Lob", damage: "350 Targeted Area of Effect 1, 350 Electric Damage", passive: "Slow Starter", active: "-", image: BASE_IMG_URL + "heavoplaid.png" },
           { name: "Chuck", race: "Undead", key: 9, rarity: "Ultra Rare", health: 1800, movement: "1 Walking", range: "3 Lob", damage: "450 Single Target Attack", passive: "-", active: "-", image: BASE_IMG_URL + "chuck.png" },
-          { name: "Akira", race: "Dimensional", key: 9, rarity: "Ultra Rare", health: 1600, movement: "2 Walking", range: "2 Line of Sight", damage: "400 Targeted Area of Effect 1 50%", passive: "-", active: "Yoinks!", image: BASE_IMG_URL + "akira.png" }
+          { name: "Akira", race: "Dimensional", key: 9, rarity: "Ultra Rare", health: 1600, movement: "2 Walking", range: "2 Line of Sight", damage: "400 Targeted Area of Effect 1 50%", passive: "-", active: "Yoinks!", image: BASE_IMG_URL + "akira.png", stressLevel: 90 }
         ];
 
         const RarityBadge = ({ rarity }) => {
@@ -350,7 +351,7 @@
             };
             return (
                 <span className={`relative inline-flex items-center pl-[18px] pr-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border transition-transform ${styles[rarity] || 'bg-gray-400'}`}>
-                    <img src="https://static.wikia.nocookie.net/phobies/images/c/c8/Icon_mod_stunned.png/revision/latest/scale-to-width-down/40?cb=20220310213609" alt="Rarity" className="absolute -left-2 -top-1.5 w-[22px] h-[22px] object-contain -rotate-12 drop-shadow-[0_3px_4px_rgba(0,0,0,0.6)] z-10" />
+                    <img src={BASE_ICON_URL + "Icon_mod_stunned.png"} alt="Rarity" className="absolute -left-2 -top-1.5 w-[22px] h-[22px] object-contain -rotate-12 drop-shadow-[0_3px_4px_rgba(0,0,0,0.6)] z-10" />
                     <span className="relative z-10">{rarity}</span>
                 </span>
             );
@@ -371,10 +372,10 @@
             };
 
             const icons = {
-                "Monster": "https://static.wikia.nocookie.net/phobies/images/a/a2/Monster_Icon.png/revision/latest?cb=20230803184051",
-                "Mechanical": "https://static.wikia.nocookie.net/phobies/images/8/85/Mechanical_Icon.png/revision/latest?cb=20230803184337",
-                "Undead": "https://static.wikia.nocookie.net/phobies/images/3/32/Undead_Icon.png/revision/latest?cb=20230803184125",
-                "Dimensional": "https://static.wikia.nocookie.net/phobies/images/5/5b/Dimensional_Icon.png/revision/latest?cb=20230803184202"
+                "Monster": BASE_ICON_URL + "Monster_Icon.png",
+                "Mechanical": BASE_ICON_URL + "Mechanical_Icon.png",
+                "Undead": BASE_ICON_URL + "Undead_Icon.png",
+                "Dimensional": BASE_ICON_URL + "Dimensional_Icon.png"
             };
 
             return (
@@ -383,6 +384,36 @@
                     <span className="relative z-10">{race}</span>
                 </div>
             );
+        };
+
+        const getStressLevelStyles = (race) => {
+            switch (race) {
+                case "Monster": return {
+                    cardBadge: "from-red-950 to-black border-red-500/50 shadow-[2px_2px_10px_rgba(248,113,113,0.3)]",
+                    modalPill: "from-red-950 to-black border-red-500/50 shadow-[0_0_15px_rgba(248,113,113,0.3)]",
+                    text: "text-red-400"
+                };
+                case "Mechanical": return {
+                    cardBadge: "from-cyan-950 to-black border-cyan-500/50 shadow-[2px_2px_10px_rgba(34,211,238,0.3)]",
+                    modalPill: "from-cyan-950 to-black border-cyan-500/50 shadow-[0_0_15px_rgba(34,211,238,0.3)]",
+                    text: "text-cyan-400"
+                };
+                case "Undead": return {
+                    cardBadge: "from-green-950 to-black border-green-500/50 shadow-[2px_2px_10px_rgba(74,222,128,0.3)]",
+                    modalPill: "from-green-950 to-black border-green-500/50 shadow-[0_0_15px_rgba(74,222,128,0.3)]",
+                    text: "text-green-400"
+                };
+                case "Dimensional": return {
+                    cardBadge: "from-purple-950 to-black border-purple-500/50 shadow-[2px_2px_10px_rgba(192,132,252,0.3)]",
+                    modalPill: "from-purple-950 to-black border-purple-500/50 shadow-[0_0_15px_rgba(192,132,252,0.3)]",
+                    text: "text-purple-400"
+                };
+                default: return {
+                    cardBadge: "from-gray-950 to-black border-gray-500/50 shadow-[2px_2px_10px_rgba(156,163,175,0.3)]",
+                    modalPill: "from-gray-950 to-black border-gray-500/50 shadow-[0_0_15px_rgba(156,163,175,0.3)]",
+                    text: "text-gray-400"
+                };
+            }
         };
 
         function App() {
@@ -433,7 +464,6 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
-            // Fungsi pembantu untuk mengambil nilai numerik pertama dari string
             const getNumericValue = (str) => {
                 if (!str || str === '-') return 0;
                 if (typeof str === 'number') return str;
@@ -449,10 +479,10 @@
 
             const particles = useMemo(() => {
                 const raceTypes = [
-                    { race: "Monster", icon: "https://static.wikia.nocookie.net/phobies/images/a/a2/Monster_Icon.png/revision/latest?cb=20230803184051", glow: "drop-shadow(0 0 10px rgba(248,113,113,0.9))" },
-                    { race: "Mechanical", icon: "https://static.wikia.nocookie.net/phobies/images/8/85/Mechanical_Icon.png/revision/latest?cb=20230803184337", glow: "drop-shadow(0 0 10px rgba(34,211,238,0.9))" },
-                    { race: "Undead", icon: "https://static.wikia.nocookie.net/phobies/images/3/32/Undead_Icon.png/revision/latest?cb=20230803184125", glow: "drop-shadow(0 0 10px rgba(74,222,128,0.9))" },
-                    { race: "Dimensional", icon: "https://static.wikia.nocookie.net/phobies/images/5/5b/Dimensional_Icon.png/revision/latest?cb=20230803184202", glow: "drop-shadow(0 0 10px rgba(192,132,252,0.9))" }
+                    { race: "Monster", icon: BASE_ICON_URL + "Monster_Icon.png", glow: "drop-shadow(0 0 10px rgba(248,113,113,0.9))" },
+                    { race: "Mechanical", icon: BASE_ICON_URL + "Mechanical_Icon.png", glow: "drop-shadow(0 0 10px rgba(34,211,238,0.9))" },
+                    { race: "Undead", icon: BASE_ICON_URL + "Undead_Icon.png", glow: "drop-shadow(0 0 10px rgba(74,222,128,0.9))" },
+                    { race: "Dimensional", icon: BASE_ICON_URL + "Dimensional_Icon.png", glow: "drop-shadow(0 0 10px rgba(192,132,252,0.9))" }
                 ];
                 
                 const sizes = [20, 35, 50, 65, 80]; 
@@ -485,9 +515,12 @@
                 });
             }, [search, filterRarity, filterRace]);
 
-            const keysToDisplay = filterKey === 'All' ? keys : [parseInt(filterKey)];
+            const keysToDisplay = filterKey === 'All' ? [1, 2, 3, 4, 5, 6, 7, 8, 9] : [filterKey === 'Stress' ? 'Stress' : parseInt(filterKey)];
             
-            const hasAnyResults = keysToDisplay.some(keyVal => baseFiltered.some(p => p.key === keyVal));
+            const hasAnyResults = keysToDisplay.some(keyVal => {
+                if (keyVal === 'Stress') return baseFiltered.some(p => p.stressLevel);
+                return baseFiltered.some(p => p.key === keyVal);
+            });
 
             const getRaceBg = (race) => {
                 switch (race) {
@@ -561,7 +594,6 @@
                 return styles[race] || styles["Monster"];
             };
 
-            // Konfigurasi visual untuk progress bar masing-masing stat
             const statConfig = {
                 health: {
                     label: 'HP', icon: 'heart', max: 3000,
@@ -585,7 +617,6 @@
                 }
             };
 
-            // Render komponen StatBar ala RPG
             const renderStatCard = (type, value) => {
                 const config = statConfig[type];
                 const numVal = getNumericValue(value);
@@ -593,23 +624,18 @@
 
                 return (
                     <div className="flex flex-col gap-2 p-3 bg-black/60 rounded-2xl border border-white/10 relative overflow-hidden group/stat shadow-inner">
-                        {/* Latar belakang bercahaya (glow) yang memudar */}
                         <div className={`absolute -right-6 -top-6 w-24 h-24 rounded-full blur-[20px] opacity-10 transition-opacity duration-500 group-hover/stat:opacity-30 ${config.bgGlow}`}></div>
 
                         <div className={`flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest relative z-10 ${config.text}`}>
                             <i data-lucide={config.icon} className="w-3.5 h-3.5"></i> {config.label}
                         </div>
 
-                        {/* Track Progress Bar */}
                         <div className="h-1.5 w-full bg-[#030407] rounded-full border border-white/10 overflow-visible relative z-10 mt-0.5 mb-1.5">
-                            {/* Isi Progress Bar */}
                             <div
                                 className={`h-full rounded-full bg-gradient-to-r ${config.gradFrom} ${config.gradTo} relative ${config.barGlow}`}
                                 style={{ width: `${percentage}%`, transition: 'width 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}
                             >
-                                {/* Animasi detak (pulse) di dalam bar */}
                                 <div className="absolute inset-0 bg-white/20 animate-pulse rounded-full"></div>
-                                {/* Efek pantulan cahaya ala kaca di bagian atas bar */}
                                 <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-white/50 to-transparent rounded-t-full"></div>
                             </div>
                         </div>
@@ -653,17 +679,16 @@
                     <header className={`sticky top-0 z-40 bg-[#0a0c10]/70 backdrop-blur-2xl border-b border-white/5 px-4 py-5 md:px-10 transition-all duration-700 ${isLoaded ? 'translate-y-0' : '-translate-y-full'}`}>
                         <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                             <div className="flex items-center gap-4 group cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-                                <div className="w-12 h-12 bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 rounded-xl flex items-center justify-center shadow-[0_0_30px_rgba(124,58,237,0.3)] group-hover:rotate-12 transition-transform duration-500">
-                                    <i data-lucide="terminal" className="text-white"></i>
+                                <div className="w-14 h-14 bg-gradient-to-b from-blue-500 to-purple-600 rounded-[1.25rem] flex items-center justify-center shadow-[0_0_20px_rgba(168,85,247,0.3)] group-hover:rotate-6 transition-transform duration-500">
+                                    <img src={BASE_ICON_URL + "Site-favicon.png"} alt="Logo" className="w-8 h-8 object-contain drop-shadow-md" />
                                 </div>
                                 <div>
-                                    <h1 className="flex items-center gap-2.5 text-xl font-black text-white tracking-tight leading-none italic uppercase">
+                                    <h1 className="flex items-center gap-3 text-[28px] font-black text-white tracking-tight leading-none italic uppercase">
                                         PHOBIES WIKI
-                                        <img src="https://static.wikia.nocookie.net/phobies/images/4/4a/Site-favicon.ico/revision/latest?cb=20220720132947" alt="Phobies Logo" className="w-6 h-6 object-contain drop-shadow-md" />
                                     </h1>
-                                    <div className="flex items-center gap-2 mt-1">
-                                        <div className="h-1 w-10 bg-purple-500 rounded-full animate-pulse"></div>
-                                        <p className="text-[9px] text-slate-500 uppercase tracking-[0.3em] font-black">Strategic Archive</p>
+                                    <div className="flex items-center gap-2 mt-2">
+                                        <div className="h-1.5 w-12 bg-purple-600 rounded-full"></div>
+                                        <p className="text-[11px] text-slate-400 uppercase tracking-[0.3em] font-black">Strategic Archive</p>
                                     </div>
                                 </div>
                             </div>
@@ -761,27 +786,36 @@
                                             </div>
                                         </div>
 
-                                        <div className="space-y-3 p-6 bg-[#11141b]/40 rounded-3xl border border-white/5 backdrop-blur-xl relative overflow-hidden group">
-                                            <div className="flex items-center gap-3 relative z-10">
-                                                <i data-lucide="hard-drive" className="text-indigo-500 w-4 h-4"></i>
-                                                <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">Key Cost</h3>
-                                            </div>
-                                            <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 mt-2 relative z-10">
-                                                <button
-                                                    onClick={() => setFilterKey('All')}
-                                                    className={`aspect-square rounded-xl border-2 font-black text-lg flex items-center justify-center transition-all ${filterKey === 'All' ? 'bg-indigo-600 border-indigo-400 text-white shadow-[0_0_15px_rgba(79,70,229,0.5)]' : 'bg-black/60 border-white/5 text-slate-700 hover:border-indigo-500/50'}`}
-                                                >
-                                                    ∞
-                                                </button>
-                                                {keys.map((k) => (
+                                        <div className="space-y-6">
+                                            <div className="space-y-3 p-6 bg-[#11141b]/40 rounded-3xl border border-white/5 backdrop-blur-xl relative overflow-hidden group">
+                                                <div className="flex items-center gap-3 relative z-10">
+                                                    <img src={BASE_ICON_URL + "Icon_KeyCost.png"} alt="Key Cost" className="w-5 h-5 object-contain drop-shadow-sm" />
+                                                    <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">Category / Key Cost</h3>
+                                                </div>
+                                                <div className="grid grid-cols-6 sm:grid-cols-11 gap-1.5 mt-3 relative z-10">
                                                     <button
-                                                        key={k}
-                                                        onClick={() => setFilterKey(k.toString())}
-                                                        className={`aspect-square rounded-xl border-2 font-mono font-black text-base flex items-center justify-center transition-all ${filterKey === k.toString() ? 'bg-purple-600 border-purple-400 text-white shadow-[0_0_15px_rgba(168,85,247,0.5)]' : 'bg-black/60 border-white/5 text-slate-700 hover:border-purple-500/50'}`}
+                                                        onClick={() => setFilterKey('All')}
+                                                        className={`aspect-square rounded-xl border-2 font-black text-lg flex items-center justify-center transition-all ${filterKey === 'All' ? 'bg-indigo-600 border-indigo-400 text-white shadow-[0_0_15px_rgba(79,70,229,0.5)]' : 'bg-black/60 border-white/5 text-slate-700 hover:border-indigo-500/50'}`}
                                                     >
-                                                        {k}
+                                                        ∞
                                                     </button>
-                                                ))}
+                                                    {keys.map((k) => (
+                                                        <button
+                                                            key={k}
+                                                            onClick={() => setFilterKey(k.toString())}
+                                                            className={`aspect-square rounded-xl border-2 font-mono font-black text-base flex items-center justify-center transition-all ${filterKey === k.toString() ? 'bg-purple-600 border-purple-400 text-white shadow-[0_0_15px_rgba(168,85,247,0.5)]' : 'bg-black/60 border-white/5 text-slate-700 hover:border-purple-500/50'}`}
+                                                        >
+                                                            {k}
+                                                        </button>
+                                                    ))}
+                                                    <button
+                                                        onClick={() => setFilterKey('Stress')}
+                                                        className={`aspect-square rounded-xl border-2 flex items-center justify-center transition-all ${filterKey === 'Stress' ? 'bg-rose-600 border-rose-400 shadow-[0_0_15px_rgba(225,29,72,0.5)]' : 'bg-black/60 border-white/5 hover:border-rose-500/50'}`}
+                                                        title="Stress Level Phobies"
+                                                    >
+                                                        <img src={BASE_ICON_URL + "Lippy.png"} alt="Stress" className={`w-5 h-5 object-contain transition-all ${filterKey === 'Stress' ? 'drop-shadow-md scale-110' : 'opacity-50 grayscale hover:grayscale-0 hover:opacity-100'}`} />
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -792,7 +826,7 @@
                         {!hasAnyResults ? (
                             <div className="flex flex-col items-center justify-center py-24 sm:py-32 text-center reveal-item">
                                 <div className="relative w-32 h-32 mb-6">
-                                    <i data-lucide="ghost" className="w-full h-full text-slate-700/50 absolute top-0 left-0 animate-pulse"></i>
+                                    <img src={BASE_ICON_URL + "Lippy.png"} alt="Empty" className="w-full h-full object-contain opacity-40 animate-pulse grayscale drop-shadow-2xl" />
                                     <i data-lucide="search-x" className="w-12 h-12 text-rose-500 absolute bottom-0 right-0 drop-shadow-lg"></i>
                                 </div>
                                 <h2 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tighter mb-3">No Phobies Found</h2>
@@ -809,19 +843,23 @@
                         ) : (
                             <div className="space-y-24">
                                 {keysToDisplay.map((keyVal) => {
-                                    const phobiesForKey = baseFiltered.filter(p => p.key === keyVal);
+                                    const isStressSection = keyVal === 'Stress';
+                                    const phobiesForKey = isStressSection 
+                                        ? baseFiltered.filter(p => p.stressLevel).sort((a, b) => a.stressLevel - b.stressLevel)
+                                        : baseFiltered.filter(p => p.key === keyVal);
+
                                     if (phobiesForKey.length === 0) return null;
 
                                     return (
                                         <section key={keyVal} className="relative group/section">
                                             <div className="sticky top-[100px] z-30 py-4 bg-[#020305]/95 backdrop-blur-md flex items-center gap-6 mb-8 sm:mb-12 border-b border-white/5">
                                                 <div className="flex items-center gap-4">
-                                                    <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-indigo-800 text-white rounded-xl flex items-center justify-center text-2xl font-black shadow-[0_10px_30px_rgba(124,58,237,0.3)] border border-purple-400/40 transform -rotate-2">
-                                                        {keyVal}
+                                                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-black transform -rotate-2 ${isStressSection ? 'bg-gradient-to-br from-rose-600 to-rose-900 border border-rose-400/40 shadow-[0_10px_30px_rgba(225,29,72,0.3)]' : 'bg-gradient-to-br from-purple-600 to-indigo-800 border border-purple-400/40 shadow-[0_10px_30px_rgba(124,58,237,0.3)] text-white'}`}>
+                                                        {isStressSection ? <img src={BASE_ICON_URL + "Lippy.png"} className="w-7 h-7 object-contain drop-shadow-md" /> : keyVal}
                                                     </div>
-                                                    <h2 className="flex items-center gap-2 text-2xl font-black text-white uppercase tracking-tighter italic">
-                                                        KEY COST
-                                                        <img src="https://static.wikia.nocookie.net/phobies/images/c/cd/Icon_KeyCost.png/revision/latest/scale-to-width-down/40?cb=20220310212118" alt="Key Cost" className="w-7 h-7 object-contain drop-shadow-[0_2px_5px_rgba(168,85,247,0.4)]" />
+                                                    <h2 className={`flex items-center gap-2 text-2xl font-black uppercase tracking-tighter italic ${isStressSection ? 'text-rose-400' : 'text-white'}`}>
+                                                        {isStressSection ? "STRESS LEVEL" : "KEY COST"}
+                                                        {!isStressSection && <img src={BASE_ICON_URL + "Icon_KeyCost.png"} alt="Key Cost" className="w-7 h-7 object-contain drop-shadow-[0_2px_5px_rgba(168,85,247,0.4)]" />}
                                                     </h2>
                                                 </div>
                                                 <div className="ml-auto flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/5">
@@ -831,36 +869,44 @@
                                             </div>
 
                                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 pl-0 md:pl-8">
-                                                {phobiesForKey.map((phobie, idx) => (
-                                                    <div 
-                                                        key={phobie.name + idx}
-                                                        onClick={() => setSelectedPhobie(phobie)}
-                                                        className={`phobie-card reveal-item group relative rounded-[1.5rem] border-[3px] p-4 sm:p-5 cursor-pointer hover:scale-[1.05] hover:-translate-y-2 hover:z-20 active:scale-95 active:brightness-125 transition-all duration-300 ${getRaceBg(phobie.race)} ${getRarityBorder(phobie.rarity)} overflow-visible min-h-[110px] sm:min-h-[130px] flex flex-col justify-between shadow-lg`}
-                                                        style={{ animationDelay: `${(idx * 0.03)}s` }}
-                                                    >
-                                                        <div className="relative z-10 flex flex-col h-full pr-[80px] pointer-events-none">
-                                                            <div className="mb-2.5 flex items-start">
-                                                                <RarityBadge rarity={phobie.rarity} />
+                                                {phobiesForKey.map((phobie, idx) => {
+                                                    const stressStyle = getStressLevelStyles(phobie.race);
+                                                    return (
+                                                        <div 
+                                                            key={phobie.name + idx}
+                                                            onClick={() => setSelectedPhobie(phobie)}
+                                                            className={`phobie-card reveal-item group relative rounded-[1.5rem] border-[3px] p-4 sm:p-5 cursor-pointer hover:scale-[1.05] hover:-translate-y-2 hover:z-20 active:scale-95 active:brightness-125 transition-all duration-300 ${getRaceBg(phobie.race)} ${getRarityBorder(phobie.rarity)} overflow-visible min-h-[110px] sm:min-h-[130px] flex flex-col justify-between shadow-lg`}
+                                                            style={{ animationDelay: `${(idx * 0.03)}s` }}
+                                                        >
+                                                            {phobie.stressLevel && (
+                                                                <div className={`absolute top-0 left-0 z-30 bg-gradient-to-br ${stressStyle.cardBadge} border-r border-b rounded-tl-[1.3rem] rounded-br-xl px-2 py-1.5 flex items-center justify-center`} title={`Stress Level ${phobie.stressLevel}`}>
+                                                                    <img src={BASE_ICON_URL + "Lippy.png"} alt="Stress Level" className="w-5 h-5 object-contain drop-shadow-md" />
+                                                                </div>
+                                                            )}
+                                                            <div className="relative z-10 flex flex-col h-full pr-[80px] pointer-events-none">
+                                                                <div className={`mb-2.5 flex items-start ${phobie.stressLevel ? 'ml-8' : ''}`}>
+                                                                    <RarityBadge rarity={phobie.rarity} />
+                                                                </div>
+                                                                <h3 className={`text-[15px] sm:text-[16px] font-black transition-all duration-300 break-words leading-tight tracking-tight uppercase group-hover:tracking-wider ${getRaceTextColorWithShine(phobie.race)}`}>
+                                                                    {phobie.name}
+                                                                </h3>
+                                                                <div className="mt-auto pt-3">
+                                                                    <RaceBadge race={phobie.race} small />
+                                                                </div>
                                                             </div>
-                                                            <h3 className={`text-[15px] sm:text-[16px] font-black transition-all duration-300 break-words leading-tight tracking-tight uppercase group-hover:tracking-wider ${getRaceTextColorWithShine(phobie.race)}`}>
-                                                                {phobie.name}
-                                                            </h3>
-                                                            <div className="mt-auto pt-3">
-                                                                <RaceBadge race={phobie.race} small />
-                                                            </div>
-                                                        </div>
 
-                                                        <div className="absolute right-0 bottom-2 w-28 h-28 sm:w-32 sm:h-32 flex items-center justify-center pointer-events-none z-0">
-                                                            <div className="w-full h-full flex items-center justify-center transform -scale-x-100 origin-center">
-                                                                <img 
-                                                                    src={phobie.image || "https://static.wikia.nocookie.net/phobies/images/4/4a/Site-favicon.ico/revision/latest?cb=20220720132947"} 
-                                                                    alt={phobie.name} 
-                                                                    className={`max-h-[85%] max-w-[85%] object-contain drop-shadow-[0_8px_15px_rgba(0,0,0,0.6)] transition-all duration-500 scale-[1.4] group-hover:scale-[1.7] group-hover:-rotate-12 group-hover:-translate-y-2 ${!phobie.image ? 'opacity-30 grayscale scale-100 group-hover:scale-125' : ''}`}
-                                                                />
+                                                            <div className="absolute right-0 bottom-2 w-28 h-28 sm:w-32 sm:h-32 flex items-center justify-center pointer-events-none z-0">
+                                                                <div className="w-full h-full flex items-center justify-center transform -scale-x-100 origin-center">
+                                                                    <img 
+                                                                        src={phobie.image || BASE_ICON_URL + "Site-favicon.png"} 
+                                                                        alt={phobie.name} 
+                                                                        className={`max-h-[85%] max-w-[85%] object-contain drop-shadow-[0_8px_15px_rgba(0,0,0,0.6)] transition-all duration-500 scale-[1.4] group-hover:scale-[1.7] group-hover:-rotate-12 group-hover:-translate-y-2 ${!phobie.image ? 'opacity-30 grayscale scale-100 group-hover:scale-125' : ''}`}
+                                                                    />
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                ))}
+                                                    );
+                                                })}
                                             </div>
                                         </section>
                                     );
@@ -869,127 +915,139 @@
                         )}
                     </main>
 
-                    {selectedPhobie && (
-                        <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 backdrop-blur-3xl overflow-y-auto ${isClosing ? 'modal-overlay-out' : 'modal-overlay'}`}>
-                            <div className="absolute inset-0 bg-black/85" onClick={handleCloseDetail} />
-                            
-                            <div className={`relative w-full max-w-md rounded-[2.5rem] border-[6px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,1)] ${isClosing ? 'modal-content-out' : 'modal-content'} ${getRaceBg(selectedPhobie.race)} ${getRarityBorder(selectedPhobie.rarity)}`}>
+                    {selectedPhobie && (() => {
+                        const stressStyle = getStressLevelStyles(selectedPhobie.race);
+                        return (
+                            <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 backdrop-blur-3xl overflow-y-auto ${isClosing ? 'modal-overlay-out' : 'modal-overlay'}`}>
+                                <div className="absolute inset-0 bg-black/85" onClick={handleCloseDetail} />
                                 
-                                <div className="p-6 bg-black/60 border-b border-white/10 relative overflow-hidden text-center">
+                                <div className={`relative w-full max-w-md rounded-[2.5rem] border-[6px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,1)] ${isClosing ? 'modal-content-out' : 'modal-content'} ${getRaceBg(selectedPhobie.race)} ${getRarityBorder(selectedPhobie.rarity)}`}>
                                     
-                                    <div className="absolute top-5 left-5 w-12 h-12 rounded-xl bg-black/70 border border-white/20 flex items-center justify-center text-xl font-black text-white shadow-2xl z-20">
-                                        {selectedPhobie.key}
-                                    </div>
-
-                                    <button 
-                                        onClick={handleCloseDetail} 
-                                        className="absolute top-5 right-5 p-3 rounded-xl bg-black/40 hover:bg-rose-600 hover:text-white text-slate-400 transition-all z-20 group"
-                                    >
-                                        <i data-lucide="x" className="w-5 h-5"></i>
-                                    </button>
-                                    
-                                    <div className="flex flex-col items-center gap-4 relative z-10 pt-4">
+                                    <div className="p-6 bg-black/60 border-b border-white/10 relative overflow-hidden text-center">
                                         
-                                        <div className="w-full h-48 sm:h-56 relative flex items-center justify-center mt-4 mb-2 group/image">
-                                            <div className="absolute inset-0 bg-white/5 blur-3xl rounded-full transition-opacity group-hover/image:opacity-40"></div>
-                                            <img 
-                                                src={selectedPhobie.image || "https://static.wikia.nocookie.net/phobies/images/4/4a/Site-favicon.ico/revision/latest?cb=20220720132947"} 
-                                                alt={selectedPhobie.name} 
-                                                className={`relative z-10 max-h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all duration-700 scale-[1.3] hover:scale-[1.4] group-hover/image:-rotate-6 group-hover/image:-translate-y-2 ${!selectedPhobie.image ? 'opacity-20 grayscale scale-100 hover:scale-110' : ''}`}
-                                            />
+                                        <div className="absolute top-5 left-5 w-auto px-4 h-12 rounded-xl bg-black/70 border border-white/20 flex items-center justify-center text-xl font-black text-white shadow-2xl z-20 gap-1.5">
+                                            {selectedPhobie.key}
+                                            <img src={BASE_ICON_URL + "Icon_KeyCost.png"} alt="Key" className="w-5 h-5 object-contain drop-shadow-md" />
                                         </div>
 
-                                        <div className="space-y-1">
-                                            <div className="flex justify-center mb-1"><RarityBadge rarity={selectedPhobie.rarity} /></div>
-                                            <h2 className={`text-3xl font-black tracking-tighter leading-tight ${getRaceTextColorWithShine(selectedPhobie.race)}`}>
-                                                {selectedPhobie.name}
-                                            </h2>
-                                            <div className="flex justify-center mt-2"><RaceBadge race={selectedPhobie.race} small /></div>
+                                        <button 
+                                            onClick={handleCloseDetail} 
+                                            className="absolute top-5 right-5 p-3 rounded-xl bg-black/40 hover:bg-rose-600 hover:text-white text-slate-400 transition-all z-20 group"
+                                        >
+                                            <i data-lucide="x" className="w-5 h-5"></i>
+                                        </button>
+                                        
+                                        <div className="flex flex-col items-center gap-4 relative z-10 pt-4">
+                                            
+                                            <div className="w-full h-48 sm:h-56 relative flex items-center justify-center mt-4 mb-2 group/image">
+                                                <div className="absolute inset-0 bg-white/5 blur-3xl rounded-full transition-opacity group-hover/image:opacity-40"></div>
+                                                <img 
+                                                    src={selectedPhobie.image || BASE_ICON_URL + "Site-favicon.png"} 
+                                                    alt={selectedPhobie.name} 
+                                                    className={`relative z-10 max-h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all duration-700 scale-[1.3] hover:scale-[1.4] group-hover/image:-rotate-6 group-hover/image:-translate-y-2 ${!selectedPhobie.image ? 'opacity-20 grayscale scale-100 hover:scale-110' : ''}`}
+                                                />
+                                            </div>
+
+                                            <div className="space-y-1 flex flex-col items-center">
+                                                <div className="flex justify-center mb-1"><RarityBadge rarity={selectedPhobie.rarity} /></div>
+                                                <h2 className={`text-3xl font-black tracking-tighter leading-tight ${getRaceTextColorWithShine(selectedPhobie.race)}`}>
+                                                    {selectedPhobie.name}
+                                                </h2>
+                                                <div className="flex justify-center mt-2 items-center gap-3">
+                                                    <RaceBadge race={selectedPhobie.race} small />
+                                                    {selectedPhobie.stressLevel && (
+                                                        <div className={`flex items-center gap-1.5 bg-gradient-to-r from-black to-black border ${stressStyle.modalPill} px-3 py-1 rounded-full`} title="Stress Level Phobie">
+                                                            <img src={BASE_ICON_URL + "Lippy.png"} alt="Stress Level" className="w-4 h-4 object-contain drop-shadow-md" />
+                                                            <span className={`text-[10px] font-black uppercase tracking-widest ${stressStyle.text}`}>Level {selectedPhobie.stressLevel}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div className="p-6 bg-black/30">
-                                    <div className="grid grid-cols-2 gap-3 mb-6">
-                                        {renderStatCard('health', selectedPhobie.health)}
-                                        {renderStatCard('damage', selectedPhobie.damage)}
-                                        {renderStatCard('movement', selectedPhobie.movement)}
-                                        {renderStatCard('range', selectedPhobie.range)}
-                                    </div>
+                                    <div className="p-6 bg-black/30">
+                                        <div className="grid grid-cols-2 gap-3 mb-6">
+                                            {renderStatCard('health', selectedPhobie.health)}
+                                            {renderStatCard('damage', selectedPhobie.damage)}
+                                            {renderStatCard('movement', selectedPhobie.movement)}
+                                            {renderStatCard('range', selectedPhobie.range)}
+                                        </div>
 
-                                    {(() => {
-                                        const hasPassive = selectedPhobie.passive !== '-';
-                                        const hasActive = selectedPhobie.active !== '-';
-                                        const passives = hasPassive ? selectedPhobie.passive.split(',').map(s => s.trim()) : [];
-                                        const actives = hasActive ? selectedPhobie.active.split(',').map(s => s.trim()) : [];
-                                        
-                                        const abilityStyle = getAbilityStyles(selectedPhobie.race);
+                                        {(() => {
+                                            const hasPassive = selectedPhobie.passive !== '-';
+                                            const hasActive = selectedPhobie.active !== '-';
+                                            const passives = hasPassive ? selectedPhobie.passive.split(',').map(s => s.trim()) : [];
+                                            const actives = hasActive ? selectedPhobie.active.split(',').map(s => s.trim()) : [];
+                                            
+                                            const abilityStyle = getAbilityStyles(selectedPhobie.race);
 
-                                        if (!hasPassive && !hasActive) {
-                                            return (
-                                                <div className="pb-4">
-                                                    <div className="p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-xl text-center flex flex-col items-center justify-center gap-2">
-                                                        <i data-lucide="circle-slash" className="w-6 h-6 text-slate-500 opacity-50"></i>
-                                                        <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">No Special Abilities</div>
+                                            if (!hasPassive && !hasActive) {
+                                                return (
+                                                    <div className="pb-4">
+                                                        <div className="p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-xl text-center flex flex-col items-center justify-center gap-2">
+                                                            <i data-lucide="circle-slash" className="w-6 h-6 text-slate-500 opacity-50"></i>
+                                                            <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">No Special Abilities</div>
+                                                        </div>
                                                     </div>
+                                                );
+                                            }
+
+                                            return (
+                                                <div className="space-y-8 pb-4 text-left">
+                                                    {hasPassive && (
+                                                        <div className={`p-4 rounded-[20px] border backdrop-blur-xl relative overflow-hidden group/ability ${abilityStyle.container}`}>
+                                                            <div className="absolute -right-4 -top-4 p-4 opacity-10 group-hover/ability:scale-110 group-hover/ability:rotate-12 transition-transform duration-500">
+                                                                <i data-lucide="shield" className={`w-20 h-20 ${abilityStyle.icon}`}></i>
+                                                            </div>
+                                                            <div className="flex items-center gap-2 mb-3 relative z-10">
+                                                                <div className={`p-1.5 rounded-lg border ${abilityStyle.iconWrapper}`}>
+                                                                    <i data-lucide="shield" className={`w-3 h-3 ${abilityStyle.icon}`}></i>
+                                                                </div>
+                                                                <div className={`text-[9px] font-black uppercase tracking-[0.3em] drop-shadow-md ${abilityStyle.title}`}>Passive Ability</div>
+                                                            </div>
+                                                            <div className="flex flex-wrap gap-2 relative z-10">
+                                                                {passives.map((p, i) => (
+                                                                    <div key={i} className={`px-3 py-1.5 border-l-2 rounded-r-lg text-xs font-bold italic ${abilityStyle.passiveItem}`}>
+                                                                        {p}
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                    {hasActive && (
+                                                        <div className={`p-4 rounded-[20px] border backdrop-blur-xl relative overflow-hidden group/ability ${abilityStyle.container}`}>
+                                                            <div className="absolute -right-4 -top-4 p-4 opacity-10 group-hover/ability:scale-110 group-hover/ability:-rotate-12 transition-transform duration-500">
+                                                                <i data-lucide="zap" className={`w-20 h-20 ${abilityStyle.icon}`}></i>
+                                                            </div>
+                                                            <div className="flex items-center gap-2 mb-3 relative z-10">
+                                                                <div className={`p-1.5 rounded-full border ${abilityStyle.iconWrapper}`}>
+                                                                    <i data-lucide="zap" className={`w-3 h-3 ${abilityStyle.icon}`}></i>
+                                                                </div>
+                                                                <div className={`text-[9px] font-black uppercase tracking-[0.3em] drop-shadow-md ${abilityStyle.title}`}>Active Ability</div>
+                                                            </div>
+                                                            <div className="flex flex-wrap gap-2 relative z-10">
+                                                                {actives.map((a, i) => (
+                                                                    <div key={i} className={`px-3 py-1.5 border-2 rounded-full text-xs font-bold italic flex items-center gap-2 ${abilityStyle.activeItem}`}>
+                                                                        <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${abilityStyle.dot}`}></div>
+                                                                        {a}
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             );
-                                        }
+                                        })()}
+                                    </div>
 
-                                        return (
-                                            <div className="space-y-8 pb-4 text-left">
-                                                {hasPassive && (
-                                                    <div className={`p-4 rounded-[20px] border backdrop-blur-xl relative overflow-hidden group/ability ${abilityStyle.container}`}>
-                                                        <div className="absolute -right-4 -top-4 p-4 opacity-10 group-hover/ability:scale-110 group-hover/ability:rotate-12 transition-transform duration-500">
-                                                            <i data-lucide="shield" className={`w-20 h-20 ${abilityStyle.icon}`}></i>
-                                                        </div>
-                                                        <div className="flex items-center gap-2 mb-3 relative z-10">
-                                                            <div className={`p-1.5 rounded-lg border ${abilityStyle.iconWrapper}`}>
-                                                                <i data-lucide="shield" className={`w-3 h-3 ${abilityStyle.icon}`}></i>
-                                                            </div>
-                                                            <div className={`text-[9px] font-black uppercase tracking-[0.3em] drop-shadow-md ${abilityStyle.title}`}>Passive Ability</div>
-                                                        </div>
-                                                        <div className="flex flex-wrap gap-2 relative z-10">
-                                                            {passives.map((p, i) => (
-                                                                <div key={i} className={`px-3 py-1.5 border-l-2 rounded-r-lg text-xs font-bold italic ${abilityStyle.passiveItem}`}>
-                                                                    {p}
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                    </div>
-                                                )}
-                                                {hasActive && (
-                                                    <div className={`p-4 rounded-[20px] border backdrop-blur-xl relative overflow-hidden group/ability ${abilityStyle.container}`}>
-                                                        <div className="absolute -right-4 -top-4 p-4 opacity-10 group-hover/ability:scale-110 group-hover/ability:-rotate-12 transition-transform duration-500">
-                                                            <i data-lucide="zap" className={`w-20 h-20 ${abilityStyle.icon}`}></i>
-                                                        </div>
-                                                        <div className="flex items-center gap-2 mb-3 relative z-10">
-                                                            <div className={`p-1.5 rounded-full border ${abilityStyle.iconWrapper}`}>
-                                                                <i data-lucide="zap" className={`w-3 h-3 ${abilityStyle.icon}`}></i>
-                                                            </div>
-                                                            <div className={`text-[9px] font-black uppercase tracking-[0.3em] drop-shadow-md ${abilityStyle.title}`}>Active Ability</div>
-                                                        </div>
-                                                        <div className="flex flex-wrap gap-2 relative z-10">
-                                                            {actives.map((a, i) => (
-                                                                <div key={i} className={`px-3 py-1.5 border-2 rounded-full text-xs font-bold italic flex items-center gap-2 ${abilityStyle.activeItem}`}>
-                                                                    <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${abilityStyle.dot}`}></div>
-                                                                    {a}
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        );
-                                    })()}
-                                </div>
-
-                                <div className="p-4 bg-black/80 border-t border-white/10 text-center text-[8px] font-black text-slate-700 uppercase tracking-widest italic animate-pulse">
-                                    Tactical Unit Archive // Encryption Level 1
+                                    <div className="p-4 bg-black/80 border-t border-white/10 text-center text-[8px] font-black text-slate-700 uppercase tracking-widest italic animate-pulse">
+                                        Tactical Unit Archive // Encryption Level 1
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
+                        );
+                    })()}
 
                     <button
                         onClick={scrollToTop}
